@@ -1,4 +1,4 @@
-using task_db;
+use task_db
 
 CREATE TABLE tasks (
     id INT AUTO_INCREMENT PRIMARY KEY,
