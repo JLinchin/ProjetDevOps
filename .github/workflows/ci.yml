@@ -37,6 +37,12 @@ jobs:
           php-version: '8.1'
           extensions: pdo_mysql
 
+      # Install Composer
+      - name: Install Composer
+        run: |
+          curl -sS https://getcomposer.org/installer | php
+          php composer.phar install
+
       # Run database migrations
       - name: Set up database schema
         run: |
@@ -50,7 +56,7 @@ jobs:
       # Run tests (if applicable)
       - name: Run tests
         run: |
-          echo "No tests configured yet. Add PHPUnit or other test commands here."
+          vendor/bin/phpunit ./src/tests/test-db.php
 
       # Verify application
       - name: Verify application
