@@ -1,7 +1,7 @@
 <?php
 use PHPUnit\Framework\TestCase;
 
-print_r(scandir('../'));
+print_r(scandir('../ProjetDevOps'));
 
 require_once '../db/connection.php';
 require_once '../db/tasks.db.php';
