@@ -30,18 +30,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      # Verify application
-      - name: Verify application
-        run: |
-          php -S localhost:8000 -t src &
-          sleep 5
-          curl -f http://localhost:8000/index.php
-
-  set-php:
-    needs: build
-    runs-on: ubuntu-latest
-
-    steps: 
       # Set up PHP
       - name: Set up PHP
         uses: shivammathur/setup-php@v2
@@ -49,35 +37,30 @@ jobs:
           php-version: '8.1'
           extensions: pdo_mysql
 
-      # Run PHP linting
-      - name: Run PHP lint
-        run: |
-          find src -name "*.php" -exec php -l {} \;
-
-
-  set-database:
-    runs-on: ubuntu-latest
-    needs: set-php
-
-    steps:
-      # Run database migrations
-      - name: Set up database schema
-        run: |
-          mysql -h 127.0.0.1 -u root -proot task_db < database/schema.sql
-
       # Install Composer
       - name: Install Composer
         run: |
           curl -sS https://getcomposer.org/installer | php
           php composer.phar install
 
+      # Run database migrations
+      - name: Set up database schema
+        run: |
+          mysql -h 127.0.0.1 -u root -proot task_db < database/schema.sql
 
-  exec-tests:
-    needs: set-database
-    runs-on: ubuntu-latest
+      # Run PHP linting
+      - name: Run PHP lint
+        run: |
+          find src -name "*.php" -exec php -l {} \;
 
-    steps:
       # Run tests (if applicable)
       - name: Run tests
         run: |
           # vendor/bin/phpunit ./src/tests/test-db.php
+
+      # Verify application
+      - name: Verify application
+        run: |
+          php -S localhost:8000 -t src &
+          sleep 5
+          curl -f http://localhost:8000/index.php
