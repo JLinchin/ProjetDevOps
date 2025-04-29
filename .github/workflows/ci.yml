@@ -53,6 +53,13 @@ jobs:
         run: |
           find src -name "*.php" -exec php -l {} \;
 
+      # Verify application
+      - name: Verify application
+        run: |
+          php -S localhost:8000 -t src &
+          sleep 5
+          curl -f http://localhost:8000/index.php
+
 
   exec-tests:
     runs-on: ubuntu-latest
@@ -63,10 +70,3 @@ jobs:
       - name: Run tests
         run: |
           # vendor/bin/phpunit ./src/tests/test-db.php
-
-      # Verify application
-      - name: Verify application
-        run: |
-          php -S localhost:8000 -t src &
-          sleep 5
-          curl -f http://localhost:8000/index.php
