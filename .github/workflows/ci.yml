@@ -37,6 +37,12 @@ jobs:
           sleep 5
           curl -f http://localhost:8000/index.php
 
+      # Install Composer
+      - name: Install Composer
+        run: |
+          curl -sS https://getcomposer.org/installer | php
+          php composer.phar install
+
   set-php:
     needs: build
     runs-on: ubuntu-latest
@@ -48,12 +54,6 @@ jobs:
         with:
           php-version: '8.1'
           extensions: pdo_mysql
-
-      # Install Composer
-      - name: Install Composer
-        run: |
-          curl -sS https://getcomposer.org/installer | php
-          php composer.phar install
 
 
   set-database:
