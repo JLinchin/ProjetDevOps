@@ -1,6 +1,8 @@
 <?php
 use PHPUnit\Framework\TestCase;
 
+echo readfile('../db/connection.php');
+
 require_once '../db/connection.php';
 require_once '../db/tasks.db.php';
 
