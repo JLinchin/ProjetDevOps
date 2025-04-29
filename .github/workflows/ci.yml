@@ -73,7 +73,7 @@ jobs:
 
 
   exec-tests:
-  needs: [set-php, set-database]
+  needs: set-php, set-database
   runs-on: ubuntu-latest
 
   steps:
