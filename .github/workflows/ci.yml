@@ -37,12 +37,6 @@ jobs:
           php-version: '8.1'
           extensions: pdo_mysql
 
-      # Install Composer (if needed)
-      - name: Install Composer
-        run: |
-          curl -sS https://getcomposer.org/installer | php
-          php composer.phar install
-
       # Run database migrations
       - name: Set up database schema
         run: |
