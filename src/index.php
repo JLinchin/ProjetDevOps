@@ -1,15 +1,17 @@
 <?php
-require_once 'db/connection.php';
+require_once 'db/tasks.db.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Handle form submission for adding a task
     $title = $_POST['title'] ?? '';
 
     if (!empty($title)) {
-        $stmt = $pdo->prepare("INSERT INTO tasks(title) VALUES (:title)");
-        $stmt->execute(['title' => $title]);
-        header('Location: view_tasks.php');
-        exit;
+        if (addTask($pdo, $title)) {
+            header('Location: view_tasks.php');
+            exit;
+        } else {
+            echo "Error: Could not add the task.";
+        }
     }
 }
 

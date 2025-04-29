@@ -1,21 +1,14 @@
 <?php
-require_once 'db/connection.php';
+require_once 'db/tasks.db.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $task = $_POST['task'];
 
     if (!empty($task)) {
-        try {
-            $stmt = $pdo->prepare("INSERT INTO tasks (title) VALUES (:task)");
-            $stmt->bindParam(':task', $task, PDO::PARAM_STR);
-
-            if ($stmt->execute()) {
-                echo "Task added successfully.";
-            } else {
-                echo "Error: Could not add the task.";
-            }
-        } catch (PDOException $e) {
-            echo "Error: " . $e->getMessage();
+        if (addTask($pdo, $task)) {
+            echo "Task added successfully.";
+        } else {
+            echo "Error: Could not add the task.";
         }
     } else {
         echo "Task cannot be empty.";

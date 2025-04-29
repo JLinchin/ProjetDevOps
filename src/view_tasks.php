@@ -1,15 +1,8 @@
 <?php
-require_once 'db/connection.php';
+require_once 'db/tasks.db.php';
 
-function fetchTasks($conn) {
-    $sql = "SELECT * FROM tasks";
-    $stmt = $conn->query($sql); // Prépare et exécute la requête
-    return $stmt->fetchAll(PDO::FETCH_ASSOC); // Utilise PDO pour récupérer les résultats
-}
-
-$tasks = fetchTasks($pdo); // Passe l'objet $pdo (et non $conn)
+$tasks = getTasks($pdo); // Utilise la fonction getTasks pour récupérer les tâches
 ?>
-
 
 <!DOCTYPE html>
 <html lang="fr">
