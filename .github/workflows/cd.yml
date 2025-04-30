@@ -27,12 +27,10 @@ jobs:
           docker build -t ${{ secrets.DOCKER_USERNAME }}/task-manager:latest .
           docker push ${{ secrets.DOCKER_USERNAME }}/task-manager:latest
 
-      # Deploy to server
-      - name: Deploy to server
+      # Deploy locally
+      - name: Deploy locally
         run: |
-          # ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} << 'EOF'
           docker pull ${{ secrets.DOCKER_USERNAME }}/task-manager:latest
           docker stop task-manager || true
           docker rm task-manager || true
           docker run -d --name task-manager -p 80:80 ${{ secrets.DOCKER_USERNAME }}/task-manager:latest
-          EOF
