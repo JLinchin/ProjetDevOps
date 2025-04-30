@@ -5,27 +5,22 @@ Cette application PHP permet aux utilisateurs de créer, afficher et gérer des 
 
 ---
 
-## Project Structure
-```
-php-task-app
-├── src
-│   ├── index.php          # Point d'entrée de l'application
-│   ├── add_task.php       # Gestion de l'ajout de tâches
-│   ├── view_tasks.php     # Affichage de la liste des tâches
-│   ├── db
-│   │   └── connection.php # Configuration de la connexion à la base de données
-│   └── templates
-│       ├── header.php     # Template HTML pour l'en-tête
-│       └── footer.php     # Template HTML pour le pied de page
-├── public
-│   └── css
-│       └── styles.css     # Styles CSS de l'application
-├── database
-│   └── schema.sql         # Schéma SQL pour la base de données
-├── docker-compose.yml     # Configuration Docker Compose
-├── application.yaml       # Configuration Kubernetes
-└── README.md              # Documentation du projet
-```
+## Structure
+- Le projet comprend 3 dossiers clés :
+   - Un dossier **.github** qui contient le nécessaire pour gérer la CI/CD
+   - Un dossier **src** qui comprend tout le code de l'application
+   - Un dossier **database** qui gère contient le script SQL qui crée la base de données
+   - Un fichier **tests** qui gère tous les tests unitaires
+
+---
+
+## Conteneurisation
+- Le projet possède une version de php **php:8.1-apache** et une version de mysql **mysql:8.0**
+
+- De plus, la conteneurisation comprend 3 conteneurs : 
+   - Un conteneur pour **php**
+   - Un conteneur pour **mysql**
+   - Un conteneur pour **phpmyadmin**
 
 ---
 
@@ -41,7 +36,7 @@ php-task-app
 ### 1. **Déploiement avec Docker Compose**
 1. **Clonez le dépôt** :
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/JLinchin/ProjetDevOps.git
    cd php-task-app
    ```
 
@@ -101,6 +96,12 @@ php-task-app
 
 5. **Accédez à l'application** :
    - Ouvrez votre navigateur et accédez à `http://localhost:8000/index.php`.
+
+---
+
+## Edition
+
+En cas d'édition du projet, il suffit de push les modifications sur git. La CI/CD permet de faire des tests sur le nouveau code et de mettre la dernière version du projet sur Docker
 
 ---
 
