@@ -57,6 +57,7 @@ jobs:
       - name: Run tests
         run: |
           echo "On run les tests ( s'ils fonctionnent :( )"
+          vendor/bin/phpunit --configuration phpunit.xml
           # vendor/bin/phpunit ./src/tests/tasksdbtest.php
 
       # Verify application
@@ -75,5 +76,4 @@ jobs:
       # Run tests (if applicable)
       - name: Run tests
         run: |
-          vendor/bin/phpunit --configuration phpunit.xml
           # vendor/bin/phpunit ./src/tests/test-db.php
