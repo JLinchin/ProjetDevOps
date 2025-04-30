@@ -34,3 +34,22 @@ jobs:
       #     docker stop php-task-app || true
       #     docker rm php-task-app || true
       #     docker run -d --name php-task-app -p 80:80 ${{ secrets.DOCKER_USERNAME }}/php-task-app-app:latest
+
+
+  send-mail:
+    runs-on: ubuntu-latest
+    needs: deploy
+
+    steps:
+      - name: Send notification email
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.gmail.com
+          server_port: 587
+          username: ${{ secrets.MAIL_USERNAME }}
+          password: ${{ secrets.MAIL_PASSWORD }}
+          subject: CI - OK !
+          body: |
+            Le test CI est OK !
+          to: jminchin.sio@gmail.com
+          from: GitHub Actions <${{ secrets.MAIL_USERNAME }}>
