@@ -84,7 +84,6 @@ jobs:
 
     steps:
       - name: Send notification email
-        - name: Send notification email
         run : |
           echo "Envoi d'un mail en cas de succès de la CI"
 
