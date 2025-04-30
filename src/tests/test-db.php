@@ -11,7 +11,7 @@ class TasksDbTest extends TestCase {
 
     protected function setUp(): void {
         // Configuration de la connexion PDO pour une base de données de test
-        $this->pdo = new PDO('mysql:host=db;dbname=test_db', 'root', 'root');
+        $this->pdo = new PDO('mysql:host=3306:3306;dbname=test_db', 'root', 'root');
         $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
         // Création de la table tasks pour les tests
