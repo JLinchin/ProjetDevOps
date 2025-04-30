@@ -56,7 +56,7 @@ jobs:
       # Run tests (if applicable)
       - name: Run tests
         run: |
-          # ls ..
+          ls ../src/tests
           vendor/bin/phpunit ../src/tests/test-db.php
 
       # Verify application
