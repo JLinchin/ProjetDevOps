@@ -1,5 +1,5 @@
 {
-  "name": "projet-devops/task-manager",
+  "name": "projet-devops/php-task-app",
   "description": "Application de gestion des tâches avec PHP et MySQL.",
   "type": "project",
   "require": {
