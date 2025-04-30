@@ -3,7 +3,7 @@ use PHPUnit\Framework\TestCase;
 
 print_r(scandir('../ProjetDevOps'));
 
-require_once '../ProjetDevOps/src/db/connection.php';
+// require_once '../ProjetDevOps/src/db/connection.php';
 require_once '../ProjetDevOps/src/db/tasks.db.php';
 
 class TasksDbTest extends TestCase {
