@@ -1,7 +1,7 @@
 <?php
 require_once 'db/tasks.db.php';
 
-$tasks = getTasks($pdo); // Utilise la fonction getTasks pour récupérer les tâches
+$tasks = getTasks($pdo);
 ?>
 
 <!DOCTYPE html>
@@ -15,25 +15,28 @@ $tasks = getTasks($pdo); // Utilise la fonction getTasks pour récupérer les t�
 <body>
     <?php include 'templates/header.php'; ?>
 
-    <h1>Liste des Tâches</h1>
-    <table>
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Tâche</th>
-                <th>Date de Création</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php foreach ($tasks as $task): ?>
+    <div class="container">
+        <h1>Liste des Tâches</h1>
+        <table>
+            <thead>
                 <tr>
-                    <td><?php echo htmlspecialchars($task['id']); ?></td>
-                    <td><?php echo htmlspecialchars($task['title']); ?></td>
-                    <td><?php echo htmlspecialchars($task['created_at']); ?></td>
+                    <th>ID</th>
+                    <th>Tâche</th>
+                    <th>Date de Création</th>
                 </tr>
-            <?php endforeach; ?>
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                <?php foreach ($tasks as $task): ?>
+                    <tr>
+                        <td><?php echo htmlspecialchars($task['id']); ?></td>
+                        <td><?php echo htmlspecialchars($task['title']); ?></td>
+                        <td><?php echo htmlspecialchars($task['created_at']); ?></td>
+                    </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+        <a href="index.php" class="button">Add New Task</a>
+    </div>
 
     <?php include 'templates/footer.php'; ?>
 </body>

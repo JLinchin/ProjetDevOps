@@ -22,13 +22,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add Task</title>
+    <link rel="stylesheet" href="../public/css/styles.css">
 </head>
 <body>
-    <h1>Add a New Task</h1>
-    <form method="POST" action="">
-        <input type="text" name="task" placeholder="Enter your task" required>
-        <button type="submit">Add Task</button>
-    </form>
-    <a href="view_tasks.php">View Tasks</a>
+    <div class="container">
+        <h1>Add a New Task</h1>
+        <form method="POST" action="">
+            <input type="text" name="task" placeholder="Enter your task" required>
+            <input type="submit" value="Add Task">
+        </form>
+        <a href="view_tasks.php" class="button">View Tasks</a>
+    </div>
 </body>
 </html>
