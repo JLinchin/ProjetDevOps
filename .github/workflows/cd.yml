@@ -24,13 +24,13 @@ jobs:
       # Build and push Docker image
       - name: Build and push Docker image
         run: |
-          docker build -t ${{ secrets.DOCKER_USERNAME }}/php-task-app:latest .
-          docker push ${{ secrets.DOCKER_USERNAME }}/php-task-app:latest
+          docker build -t ${{ secrets.DOCKER_USERNAME }}/php-task-app-app-app-app-app-app-app-app:latest .
+          docker push ${{ secrets.DOCKER_USERNAME }}/php-task-app-app-app:latest
 
       # Deploy locally
       # - name: Deploy locally
       #   run: |
-      #     docker pull ${{ secrets.DOCKER_USERNAME }}/php-task-app:latest
-      #     docker stop php-task-app || true
-      #     docker rm php-task-app || true
-      #     docker run -d --name php-task-app -p 80:80 ${{ secrets.DOCKER_USERNAME }}/php-task-app:latest
+      #     docker pull ${{ secrets.DOCKER_USERNAME }}/php-task-app-app:latest
+      #     docker stop php-task-app-app || true
+      #     docker rm php-task-app-app || true
+      #     docker run -d --name php-task-app-app -p 80:80 ${{ secrets.DOCKER_USERNAME }}/php-task-app-app:latest
