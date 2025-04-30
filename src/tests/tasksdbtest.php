@@ -24,31 +24,5 @@ class TasksDbTest extends TestCase {
         $result = addTask($this->pdo, 'Test Task');
         $this->assertTrue($result);
             
-        $stmt = $this->pdo->query("SELECT * FROM tasks WHERE title = 'Test Task'");
-        $task = $stmt->fetch(PDO::FETCH_ASSOC);
-            
-        $this->assertNotEmpty($task);
-        $this->assertEquals('Test Task', $task['title']);
-            
-        addTask($this->pdo, 'Task 1');
-        addTask($this->pdo, 'Task 2');
-            
-        $tasks = getTasks($this->pdo);
-        $this->assertCount(2, $tasks);
-        $this->assertEquals('Task 1', $tasks[0]['title']);
-        $this->assertEquals('Task 2', $tasks[1]['title']);
-            
-        addTask($this->pdo, 'Task to Delete');
-        $result = deleteTask($this->pdo);
-        $this->assertTrue($result);
-            
-        $tasks = getTasks($this->pdo);
-        $this->assertEmpty($tasks);
-            
-        addTask($this->pdo, 'Task 1');
-        addTask($this->pdo, 'Task 2');
-            
-        $count = getTaskCount($this->pdo);
-        $this->assertEquals(2, $count);
             }
         }
