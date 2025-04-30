@@ -129,17 +129,3 @@ spec:
           value: root
         ports:
         - containerPort: 80
----
-# Service pour phpMyAdmin
-apiVersion: v1
-kind: Service
-metadata:
-  name: phpmyadmin-service
-spec:
-  selector:
-    app: phpmyadmin
-  ports:
-    - protocol: TCP
-      port: 8080
-      targetPort: 80
-  type: LoadBalancer
