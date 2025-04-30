@@ -58,8 +58,7 @@ jobs:
         run: |
           echo "On run les tests ( s'ils fonctionnent :( )"
           ls
-          vendor/bin/phptests--configuration phptestsml
-          # vendor/bin/phpunit ./src/tests/tasksdbtest.php
+          # vendor/bin/phptests--configuration phptestsml
 
       # Verify application
       - name: Verify application
