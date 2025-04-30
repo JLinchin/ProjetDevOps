@@ -75,4 +75,5 @@ jobs:
       # Run tests (if applicable)
       - name: Run tests
         run: |
+          vendor/bin/phpunit --configuration phpunit.xml
           # vendor/bin/phpunit ./src/tests/test-db.php
