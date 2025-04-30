@@ -28,9 +28,9 @@ jobs:
           docker push ${{ secrets.DOCKER_USERNAME }}/task-manager:latest
 
       # Deploy locally
-      - name: Deploy locally
-        run: |
-          docker pull ${{ secrets.DOCKER_USERNAME }}/task-manager:latest
-          docker stop task-manager || true
-          docker rm task-manager || true
-          docker run -d --name task-manager -p 80:80 ${{ secrets.DOCKER_USERNAME }}/task-manager:latest
+      # - name: Deploy locally
+      #   run: |
+      #     docker pull ${{ secrets.DOCKER_USERNAME }}/task-manager:latest
+      #     docker stop task-manager || true
+      #     docker rm task-manager || true
+      #     docker run -d --name task-manager -p 80:80 ${{ secrets.DOCKER_USERNAME }}/task-manager:latest
