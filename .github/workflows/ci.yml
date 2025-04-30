@@ -53,6 +53,11 @@ jobs:
         run: |
           find src -name "*.php" -exec php -l {} \;
 
+      # Run tests (if applicable)
+      - name: Run tests
+        run: |
+          vendor/bin/phpunit ./src/tests/test-db.php
+
       # Verify application
       - name: Verify application
         run: |
@@ -69,4 +74,4 @@ jobs:
       # Run tests (if applicable)
       - name: Run tests
         run: |
-          vendor/bin/phpunit ./src/tests/test-db.php
+          # vendor/bin/phpunit ./src/tests/test-db.php
