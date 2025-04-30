@@ -30,7 +30,7 @@ jobs:
       # Deploy to server
       - name: Deploy to server
         run: |
-          ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} << 'EOF'
+          # ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} << 'EOF'
           docker pull ${{ secrets.DOCKER_USERNAME }}/task-manager:latest
           docker stop task-manager || true
           docker rm task-manager || true
