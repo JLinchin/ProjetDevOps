@@ -1,57 +1,116 @@
 # PHP Task Application
 
 ## Description
-This PHP Task Application allows users to create, view, and manage tasks. It provides a simple interface for adding tasks to a database and displaying them in a user-friendly format.
+Cette application PHP permet aux utilisateurs de créer, afficher et gérer des tâches. Elle utilise une base de données MySQL pour stocker les tâches et propose une interface simple et intuitive.
+
+---
 
 ## Project Structure
 ```
 php-task-app
 ├── src
-│   ├── index.php          # Entry point of the application
-│   ├── add_task.php       # Handles task addition
-│   ├── view_tasks.php      # Displays the list of tasks
+│   ├── index.php          # Point d'entrée de l'application
+│   ├── add_task.php       # Gestion de l'ajout de tâches
+│   ├── view_tasks.php     # Affichage de la liste des tâches
 │   ├── db
-│   │   └── connection.php  # Database connection setup
+│   │   └── connection.php # Configuration de la connexion à la base de données
 │   └── templates
-│       ├── header.php      # HTML header template
-│       └── footer.php      # HTML footer template
+│       ├── header.php     # Template HTML pour l'en-tête
+│       └── footer.php     # Template HTML pour le pied de page
 ├── public
 │   └── css
-│       └── styles.css      # CSS styles for the application
+│       └── styles.css     # Styles CSS de l'application
 ├── database
-│   └── schema.sql          # SQL schema for the database
-└── README.md               # Project documentation
+│   └── schema.sql         # Schéma SQL pour la base de données
+├── docker-compose.yml     # Configuration Docker Compose
+├── application.yaml       # Configuration Kubernetes
+└── README.md              # Documentation du projet
 ```
 
-## Requirements
-- PHP 7.4 or higher
-- MySQL database
+---
 
-## Setup Instructions
-1. **Clone the repository**:
-   ```
+## Requirements
+- **Docker** et **Docker Compose** (pour un déploiement avec conteneurs)
+- **Kubernetes** (pour un déploiement dans un cluster)
+- **PHP 7.4 ou supérieur** et **MySQL** (pour un déploiement local)
+
+---
+
+## Deployment Instructions
+
+### 1. **Déploiement avec Docker Compose**
+1. **Clonez le dépôt** :
+   ```bash
    git clone <repository-url>
    cd php-task-app
    ```
 
-2. **Set up the database**:
-   - Create a MySQL database for the application.
-   - Run the SQL commands in `database/schema.sql` to create the necessary tables.
+2. **Lancez les conteneurs** :
+   ```bash
+   docker-compose up -d
+   ```
 
-3. **Configure database connection**:
-   - Edit `src/db/connection.php` to include your database credentials.
+3. **Accédez à l'application** :
+   - Application : `http://localhost:8000`
+   - PhpMyAdmin : `http://localhost:8080` (utilisateur : `root`, mot de passe : `root`)
 
-4. **Run the application**:
-   - Start a local PHP server:
+---
+
+### 2. **Déploiement avec Kubernetes**
+1. **Assurez-vous que Kubernetes est configuré** :
+   - Installez `kubectl` et configurez un cluster Kubernetes fonctionnel.
+
+2. **Appliquez la configuration Kubernetes** :
+   ```bash
+   kubectl apply -f application.yaml
+   ```
+
+3. **Vérifiez les ressources déployées** :
+   ```bash
+   kubectl get pods
+   kubectl get services
+   ```
+
+4. **Accédez à l'application** :
+   - Récupérez l'adresse IP publique du service LoadBalancer :
+     ```bash
+     kubectl get service app-service
      ```
-     php -S localhost:8000 -t src
-     ```
-   - Open your browser and navigate to `http://localhost:8000/index.php` to access the application.
+   - Accédez à l'application via l'adresse IP et le port 8000.
+
+---
+
+### 3. **Déploiement local**
+1. **Clonez le dépôt** :
+   ```bash
+   git clone <repository-url>
+   cd php-task-app
+   ```
+
+2. **Configurez la base de données** :
+   - Créez une base de données MySQL.
+   - Exécutez le fichier `database/schema.sql` pour créer les tables nécessaires.
+
+3. **Configurez la connexion à la base de données** :
+   - Modifiez `src/db/connection.php` pour inclure vos identifiants de base de données.
+
+4. **Lancez le serveur PHP** :
+   ```bash
+   php -S localhost:8000 -t src
+   ```
+
+5. **Accédez à l'application** :
+   - Ouvrez votre navigateur et accédez à `http://localhost:8000/index.php`.
+
+---
 
 ## Features
-- Add new tasks to the database.
-- View all tasks in a list format.
-- Simple and clean user interface.
+- Ajouter de nouvelles tâches à la base de données.
+- Afficher toutes les tâches dans un format liste.
+- Interface utilisateur simple et épurée.
+- Déploiement facile avec Docker ou Kubernetes.
+
+---
 
 ## License
-This project is licensed under the MIT License.
+Ce projet est sous licence MIT.
